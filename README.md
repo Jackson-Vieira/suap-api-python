@@ -1,50 +1,36 @@
-<h1>SUAP-API-PYTHON</h1> 
+# API-SUAP-PYTHON
+
+Aplicação 'helper' para se comunicar com <a href="https://suap.ifrn.edu.br/api/docs/"> SUAP API </a> e pegar informações permitidas com facilidade
 
 > Status do Projeto: em desenvolvimento
 
-### Tópicos 
+### Contents
+- [Pré-requisitos](#pré-requisitos)
+- [Métodos/Utilidades](#métodos-utilidades)
+- [Casos de Uso](#casos-de-uso)
+- [Como clonar o repositório](#como-clonar-o-repositório)
+- [Como rodar os testes](#como-rodar-os-testes)
+- [Como contribuir para o projeto](#como-contribuir-para-o-projeto)
+___
 
-:small_blue_diamond: [Descrição do projeto](#descrição-do-projeto)
-
-:small_blue_diamond: [Informações importantes](#informações-importantes)
-
-:small_blue_diamond: [Pré-requisitos](#pré-requisitos)
-
-:small_blue_diamond: [Como rodar os testes](#como-rodar-os-testes)
-
-## Descrição do projeto 
-
-<p align="justify">
-    'GETTER' que tem o objetivo de se comunicar com API do SUAP e coletar as informações expecificadas
-</p>
-
-## Informações importantes
-- Versão python utilizada: Python - 3.10.6
-
-## Pré-requisitos
+### Pré-requisitos
+- python3
 - requests==2.28.1
 
 ```
-pip install requests==2.28.1
+pip3 install requests==2.28.1
 ```
 
-## Como rodar os testes
-No terminal, clone o projeto: 
+### Métodos-Utilidades
+- ```def getMeusDados(self)``` Pegar dados pessoais de um (usuario) 
+- ```def getMeusPeriodosLetivos(self)``` Pegar Periodos Letivos de um (usuario)
+- ```def getMeuBoletim(self, year, periodo)``` Pegar Boletim de um (usuario)
+- ```def getTurmasVirtuais(self, year, periodo)``` Pegar Turmas Virtuais de um (usuario)
+- ```def getTurmaVirtual(self, id_turma_virtual)``` Pegar Informações de Determinada Turma de um (usuario)
 
-```
-git clone 
-```
+### Casos de Uso
+A aplicação pode ser utilizada como base para projetos que precise utilizar informações dos alunos do SUAP, por exemplo pegar alunos presentes na turma do usuario, ...
 
-```
-cd dir
-python3 tests/test.py # ON LINUX
-# Escreva sua matricula e sua senha
-202110******** password
-```
-
-## Casos de Uso
-A aplicação pode ser utilizada como base para projetos que precise utilizar informações dos alunos do SUAP,
-por exemplo alunos presentes em uma turma virtual ...
 ```
 def getMeusDados(self):
     """
@@ -63,6 +49,36 @@ def getTurmasVirtuais(self, year, periodo):
     url = self.endpoint+f"minhas-informacoes/turmas-virtuais/{year}/{periodo}"
     return self.doGETRequest(url)
 ```
+
+
+### Como clonar o repositório
+```
+git clone https://github.com/Jackson-Vieira/suap-api-python.git
+```
+
+### Como rodar os testes
+
+```
+cd suap-api-python
+python3 tests/test.py # ON LINUX
+# Escreva sua matricula e sua senha
+202110******** password
+```
+
+### Como contribuir para o projeto
+Steps:
+1. Fork este repositório. <a href="https://docs.github.com/pt/get-started/quickstart/fork-a-repo"> help </a>
+2. Clone este repositório. `git clone https://github.com/YOUR-USERNAME/suap-api-python`
+3. Acesse a pasta principal. `cd suap-api-python`
+4. Definir um novo remoto (remote). `git remote add upstream git@github.com:Jackson-Vieira/suap-api-python.git`
+5. Acessar a branch principal. `git checkout main`
+6. Sincronizar sua cópia local antes de criar o branch.`git pull upstream main && git push origin main`
+7. Crie uma branch. `git checkout -b '<your_branch_name>'`
+8. Faça suas mudanças e adicione ao controle de versão. `git add . && git commit -m '<mensagem_commit>'`
+9. Push para a branch principal. `git push -u origin <your_branch_name>`
+10. Create the pull request.
+
+Ou consulte <a href="https://docs.github.com/pt/get-started/quickstart/contributing-to-projects">GitHub quickstart</a>
 
 ## Licença 
 The [MIT License]() (MIT)
