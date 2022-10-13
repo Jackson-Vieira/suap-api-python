@@ -1,21 +1,19 @@
 import requests
 
 class Suap:
-    """
-    Construtor, que pode ou não receber um token de acesso
-    """
     def __init__(self,token=False):
-
         if token:
             self.token = token
         self.token = None
 
         self.endpoint = 'https://suap.ifrn.edu.br/api/v2/'
 
-    """
-    Autentica um usuário e retorna um token de acesso.
-    """
+   
     def autenticar(self, username, password, acessKey=False, setToken=True):
+        """
+        Faz a autenticação de  um usuário e retorna um token de acesso.
+        """
+
         if acessKey:
             url = self.endpoint+'autenticacao/acesso_responsaveis/'
             params = {
@@ -47,23 +45,45 @@ class Suap:
         self.token = token
 
     def getMeusDados(self):
+        """
+        Retorna todos os dados pessoais do usuario
+        """
+
         url = self.endpoint+'minhas-informacoes/meus-dados/'
         return self.doGETRequest(url)
 
     def getMeusPeriodosLetivos(self):
+        """
+        Retorna todos os periodos letivos do usuario
+        """
+
         url = self.endpoint+'minhas-informacoes/meus-periodos-letivos/'
         return self.doGETRequest(url)
 
     def getMeuBoletim(self, year, periodo):
+        """
+        Retorna o boletim de todas matérias em determinado ano e periodo
+        """
+
         url = self.endpoint+f'minhas-informacoes/boletim/{year}/{periodo}'
         return self.doGETRequest(url)
 
-    def getTurmasVirtuais(self,year, periodo):
+    def getTurmasVirtuais(self, year, periodo):
+        """
+        Retorna todas as turmas virtuais do usuario em determinado ano e periodo
+        """
+
         url = self.endpoint+f"minhas-informacoes/turmas-virtuais/{year}/{periodo}"
         return self.doGETRequest(url)
     
-    def getTurmaVirtual(self, id):
-        url = self.endpoint+f"minhas-informacoes/turma-virtual/{id}/"
+    def getTurmaVirtual(self, id_turma_virtual):
+        """
+        Retorna todas as informações de uma turma virtual do usuario
+
+        id --> ID da turma virtual
+        """
+
+        url = self.endpoint+f"minhas-informacoes/turma-virtual/{id_turma_virtual}/"
         return self.doGETRequest(url)
 
     def doGETRequest(self, url):
